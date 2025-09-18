@@ -1,0 +1,63 @@
+{
+  "glass": {
+    "category": "Glass",
+    "icon": "🍷",
+    "generalGuidance": "Glass is infinitely recyclable. Rinse containers and remove lids before recycling.",
+    "recyclingProcess": "Glass is crushed, melted, and reformed into new containers with less energy than virgin production.",
+    "saSpecificGuidance": "Use The Glass Recycling Company's bottle banks or retailer take-back schemes for refundable bottles.",
+    "regionalVariations": [
+      { "province": "Western Cape", "guidance": "Cape Town offers kerbside glass collection in many suburbs." },
+      { "province": "Gauteng", "guidance": "Pikitup provides numerous public glass drop-off facilities." }
+    ],
+    "reuseIdeas": [
+      "Use jars for pantry storage",
+      "Create planters or candle holders"
+    ],
+    "commonMistakes": [
+      "Leaving lids attached",
+      "Mixing window panes with bottles"
+    ],
+    "localResources": [
+      {
+        "title": "The Glass Recycling Company",
+        "url": "https://www.tgrc.co.za",
+        "description": "Nationwide database of glass drop-off points",
+        "category": "recycling"
+      }
+    ],
+    "diyTips": [
+      "Soak bottles to remove labels",
+      "Sand any sharp cut edges"
+    ]
+  },
+  "metal": {
+    "category": "Metal",
+    "icon": "🥫",
+    "generalGuidance": "Separate aluminium from steel when possible and ensure cans are empty and rinsed.",
+    "recyclingProcess": "Metals are sorted magnetically, baled, melted and rolled into new sheets.",
+    "saSpecificGuidance": "Collect-a-Can operates national buy-back centres for aluminium beverage cans.",
+    "regionalVariations": [
+      { "province": "Gauteng", "guidance": "Scrap dealers buy most metal types at market rates." }
+    ],
+    "reuseIdeas": [
+      "Convert cans into planters",
+      "Use tins for desk organisers"
+    ],
+    "commonMistakes": [
+      "Leaving food residue",
+      "Including pressurised aerosol cans"
+    ],
+    "localResources": [
+      {
+        "title": "Collect-a-Can",
+        "url": "https://www.collectacan.co.za",
+        "description": "Cash for used beverage cans",
+        "category": "recycling"
+      }
+    ],
+    "diyTips": [
+      "Crush cans to save space",
+      "Use a magnet to sort steel vs aluminium"
+    ]
+  }
+}

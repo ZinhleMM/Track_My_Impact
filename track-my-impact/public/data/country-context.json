@@ -1,0 +1,12 @@
+[
+  {
+    "context_id": "CTX_001",
+    "country_name": "South Africa",
+    "country_code": "ZAF",
+    "year": 2023,
+    "co2_emissions_per_capita_tons": 8.5,
+    "recycling_rate_percentage": 18.0,
+    "population": 60000000,
+    "data_source": "DFFE Environmental Outlook 2024"
+  }
+]

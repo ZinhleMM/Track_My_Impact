@@ -1,0 +1,212 @@
+{
+  "glass_glass_beverage_bottles": {
+    "friendlyName": "Glass Beverage Bottles",
+    "category": "glass",
+    "impactMaterial": "glass",
+    "warmCategory": "Glass Containers",
+    "defaultWeightKg": 0.5
+  },
+  "glass_glass_cosmetic_containers": {
+    "friendlyName": "Glass Cosmetic Containers",
+    "category": "glass",
+    "impactMaterial": "glass",
+    "warmCategory": "Glass Containers",
+    "defaultWeightKg": 0.5
+  },
+  "glass_glass_food_jars": {
+    "friendlyName": "Glass Food Jars",
+    "category": "glass",
+    "impactMaterial": "glass",
+    "warmCategory": "Glass Containers",
+    "defaultWeightKg": 0.5
+  },
+  "metal_aerosol_cans": {
+    "friendlyName": "Aerosol Cans",
+    "category": "metal",
+    "impactMaterial": "metal",
+    "warmCategory": "Mixed Metals",
+    "defaultWeightKg": 0.015
+  },
+  "metal_aluminum_food_cans": {
+    "friendlyName": "Aluminum Food Cans",
+    "category": "metal",
+    "impactMaterial": "metal",
+    "warmCategory": "Aluminum Cans",
+    "defaultWeightKg": 0.015
+  },
+  "metal_aluminum_soda_cans": {
+    "friendlyName": "Aluminum Soda Cans",
+    "category": "metal",
+    "impactMaterial": "metal",
+    "warmCategory": "Aluminum Cans",
+    "defaultWeightKg": 0.015
+  },
+  "metal_steel_food_cans": {
+    "friendlyName": "Steel Food Cans",
+    "category": "metal",
+    "impactMaterial": "metal",
+    "warmCategory": "Steel Cans",
+    "defaultWeightKg": 0.015
+  },
+  "organic_waste_coffee_grounds": {
+    "friendlyName": "Waste Coffee Grounds",
+    "category": "organic",
+    "impactMaterial": "organic",
+    "warmCategory": "Food Waste",
+    "defaultWeightKg": 0.2
+  },
+  "organic_waste_eggshells": {
+    "friendlyName": "Waste Eggshells",
+    "category": "organic",
+    "impactMaterial": "organic",
+    "warmCategory": "Food Waste",
+    "defaultWeightKg": 0.2
+  },
+  "organic_waste_food_waste": {
+    "friendlyName": "Waste Food Waste",
+    "category": "organic",
+    "impactMaterial": "organic",
+    "warmCategory": "Food Waste",
+    "defaultWeightKg": 0.2
+  },
+  "organic_waste_tea_bags": {
+    "friendlyName": "Waste Tea Bags",
+    "category": "organic",
+    "impactMaterial": "organic",
+    "warmCategory": "Food Waste",
+    "defaultWeightKg": 0.2
+  },
+  "paper_cardboard_boxes": {
+    "friendlyName": "Cardboard Boxes",
+    "category": "paper",
+    "impactMaterial": "paper",
+    "warmCategory": "Corrugated Cardboard",
+    "defaultWeightKg": 0.1
+  },
+  "paper_cardboard_packaging": {
+    "friendlyName": "Cardboard Packaging",
+    "category": "paper",
+    "impactMaterial": "paper",
+    "warmCategory": "Corrugated Cardboard",
+    "defaultWeightKg": 0.1
+  },
+  "paper_magazines": {
+    "friendlyName": "Magazines",
+    "category": "paper",
+    "impactMaterial": "paper",
+    "warmCategory": "Mixed Paper",
+    "defaultWeightKg": 0.1
+  },
+  "paper_newspaper": {
+    "friendlyName": "Newspaper",
+    "category": "paper",
+    "impactMaterial": "paper",
+    "warmCategory": "Newspaper",
+    "defaultWeightKg": 0.1
+  },
+  "paper_office_paper": {
+    "friendlyName": "Office Paper",
+    "category": "paper",
+    "impactMaterial": "paper",
+    "warmCategory": "Office Paper",
+    "defaultWeightKg": 0.1
+  },
+  "paper_paper_cups": {
+    "friendlyName": "Paper Cups",
+    "category": "paper",
+    "impactMaterial": "paper",
+    "warmCategory": "Mixed Paper",
+    "defaultWeightKg": 0.1
+  },
+  "plastic_disposable_plastic_cutlery": {
+    "friendlyName": "Disposable Plastic Cutlery",
+    "category": "plastic",
+    "impactMaterial": "plastic",
+    "warmCategory": "Mixed Plastics",
+    "defaultWeightKg": 0.03
+  },
+  "plastic_plastic_cup_lids": {
+    "friendlyName": "Plastic Cup Lids",
+    "category": "plastic",
+    "impactMaterial": "plastic",
+    "warmCategory": "Mixed Plastics",
+    "defaultWeightKg": 0.03
+  },
+  "plastic_plastic_detergent_bottles": {
+    "friendlyName": "Plastic Detergent Bottles",
+    "category": "plastic",
+    "impactMaterial": "plastic",
+    "warmCategory": "HDPE Bottles",
+    "defaultWeightKg": 0.03
+  },
+  "plastic_plastic_food_containers": {
+    "friendlyName": "Plastic Food Containers",
+    "category": "plastic",
+    "impactMaterial": "plastic",
+    "warmCategory": "Mixed Plastics",
+    "defaultWeightKg": 0.03
+  },
+  "plastic_plastic_shopping_bags": {
+    "friendlyName": "Plastic Shopping Bags",
+    "category": "plastic",
+    "impactMaterial": "plastic",
+    "warmCategory": "Plastic Film",
+    "defaultWeightKg": 0.03
+  },
+  "plastic_plastic_soda_bottles": {
+    "friendlyName": "Plastic Soda Bottles",
+    "category": "plastic",
+    "impactMaterial": "plastic",
+    "warmCategory": "PET Bottles",
+    "defaultWeightKg": 0.03
+  },
+  "plastic_plastic_straws": {
+    "friendlyName": "Plastic Straws",
+    "category": "plastic",
+    "impactMaterial": "plastic",
+    "warmCategory": "Mixed Plastics",
+    "defaultWeightKg": 0.03
+  },
+  "plastic_plastic_trash_bags": {
+    "friendlyName": "Plastic Trash Bags",
+    "category": "plastic",
+    "impactMaterial": "plastic",
+    "warmCategory": "Plastic Film",
+    "defaultWeightKg": 0.03
+  },
+  "plastic_plastic_water_bottles": {
+    "friendlyName": "Plastic Water Bottles",
+    "category": "plastic",
+    "impactMaterial": "plastic",
+    "warmCategory": "PET Bottles",
+    "defaultWeightKg": 0.03
+  },
+  "plastic_styrofoam_cups": {
+    "friendlyName": "Styrofoam Cups",
+    "category": "plastic",
+    "impactMaterial": "plastic",
+    "warmCategory": "Mixed Plastics",
+    "defaultWeightKg": 0.03
+  },
+  "plastic_styrofoam_food_containers": {
+    "friendlyName": "Styrofoam Food Containers",
+    "category": "plastic",
+    "impactMaterial": "plastic",
+    "warmCategory": "Mixed Plastics",
+    "defaultWeightKg": 0.03
+  },
+  "textiles_clothing": {
+    "friendlyName": "Clothing",
+    "category": "textiles",
+    "impactMaterial": "textiles",
+    "warmCategory": "Mixed Textiles",
+    "defaultWeightKg": 0.5
+  },
+  "textiles_shoes": {
+    "friendlyName": "Shoes",
+    "category": "textiles",
+    "impactMaterial": "textiles",
+    "warmCategory": "Mixed Textiles",
+    "defaultWeightKg": 0.5
+  }
+}

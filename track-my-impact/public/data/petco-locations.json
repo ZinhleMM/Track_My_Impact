@@ -1,0 +1,38 @@
+[
+  {
+    "location_id": "LOC_001",
+    "site_name": "PETCO Sandton City",
+    "address": "Sandton City Shopping Centre, Sandton Drive, Sandton",
+    "city": "Sandton",
+    "latitude": -26.1076,
+    "longitude": 28.0567,
+    "phone": "+27 11 123 4567",
+    "accepted_materials": "[\"PET Bottles\", \"Tetra Pak\"]",
+    "site_type": "Buy_Back_Centre",
+    "status": "Active"
+  },
+  {
+    "location_id": "LOC_002",
+    "site_name": "PETCO Rosebank Mall",
+    "address": "50 Bath Avenue, Rosebank",
+    "city": "Rosebank",
+    "latitude": -26.1448,
+    "longitude": 28.0436,
+    "phone": "+27 11 234 5678",
+    "accepted_materials": "[\"PET Bottles\", \"Aluminum Cans\"]",
+    "site_type": "Drop_Off_Point",
+    "status": "Active"
+  },
+  {
+    "location_id": "LOC_003",
+    "site_name": "PETCO Eastgate Shopping Centre",
+    "address": "43 Bradford Road, Bedfordview",
+    "city": "Bedfordview",
+    "latitude": -26.1891,
+    "longitude": 28.1158,
+    "phone": "+27 11 345 6789",
+    "accepted_materials": "[\"PET Bottles\", \"Tetra Pak\", \"Glass\"]",
+    "site_type": "Collection_Point",
+    "status": "Active"
+  }
+]

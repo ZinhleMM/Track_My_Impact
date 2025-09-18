@@ -1,0 +1,173 @@
+Track My Impact — Run Instructions (VS Code)
+
+Objective of Below Instructions: Guide user to run the FastAPI backend and Next.js frontend locally using Visual Studio Code on macOS/Linux.
+
+Requirements
+- Node 18+ and npm
+- Python 3.11+
+- Visual Studio Code
+- VS Code extensions: Python (Microsoft), ESLint (optional)
+
+Open the Project in VS Code
+1) Open VS Code → File → Open Folder… → select the repo root.
+2) Open an integrated terminal: Terminal → New Terminal.
+
+Backend (FastAPI) — One‑time Setup
+1) Create a virtual environment and install deps
+   - `cd backend`
+   - `python -m venv venv`
+   - `source venv/bin/activate`
+   - `pip install -U pip setuptools wheel`
+   - `pip install -r requirements.txt`
+2) Initialise the database (tables + a test user)
+   - `python init_database.py`
+
+Backend — Run
+- With the venv active in a terminal at `backend/` run:
+  - `uvicorn app.main:app --host 127.0.0.1 --port 8000 --loop asyncio --http h11`
+- Health check (new terminal):
+  - `curl http://127.0.0.1:8000/health`
+
+Frontend (Next.js) — One‑time Setup
+1) In a new terminal from the repo root:
+   - `cd track-my-impact`
+   - `npm install`
+
+Frontend — Run
+- From `track-my-impact/` run the dev server (webpack dev; no Turbopack):
+  - `export NEXT_PUBLIC_API_BASE_URL=http://127.0.0.1:8000`
+  - `npm run dev`
+- Open the app: http://localhost:3000
+
+Test Login (dev)
+- Seeded user: username `test`, password `test123`.
+- Login in the UI or via API (`POST /api/auth/login`).
+
+Integrate - AI Classifier Model
+
+- Ensure CNN model file for conversion is under `track-my-impact/public/model/`:
+  - `waste_model.keras`
+- Check labels file is in: `track-my-impact/public/labels.json`
+- Without a model, the UI uses a safe mock mode.
+- Self-check page: open `http://localhost:3000/tools/model-check` to verify classes, normalization, and run a test image.
+- Mapping coverage: open `http://localhost:3000/tools/mapping-check` to see which labels map to WARM categories and which management methods are available per label.
+- Adjust preprocessing via env vars before `npm run dev`:
+  - `export NEXT_PUBLIC_TMI_TFJS_NORM=-1_1` (use `0_1` if trained with [0,1] scaling)
+  - `export NEXT_PUBLIC_TMI_TFJS_INPUT=224` (change if your model expects another size)
+- Convert Keras to TFJS (if your `.keras` is at `track-my-impact/public/model/waste_model.keras`):
+  - `cd track-my-impact`
+  - `pip install tensorflowjs`
+  - `tensorflowjs_converter --input_format=keras public/model/waste_model.keras public/model`
+** python - <<'PY'
+import tensorflow as tf
+m = tf.keras.models.load_model('backend/app/models/waste_model.keras', compile=False)
+m.save('backend/app/models/waste_model.h5')
+print('Saved H5 at backend/app/models/waste_model.h5')
+PY
+
+Troubleshooting
+- Port 8000 in use: `lsof -ti tcp:8000 | xargs kill -9`
+- macOS FastAPI crash (uvloop/httptools): run Uvicorn with `--loop asyncio --http h11` (as above)
+- CORS in browser: ensure `NEXT_PUBLIC_API_BASE_URL` points to your backend; for production, set allowed origins on the backend.
+- CORS preflight 400 (OPTIONS): add your exact frontend origin to backend `ALLOWED_ORIGINS` (supports dev defaults for `http://localhost:3000`, `http://127.0.0.1:3000`). Test with:
+  - `curl -i -X OPTIONS http://127.0.0.1:8000/api/auth/login -H "Origin: http://127.0.0.1:3000" -H "Access-Control-Request-Method: POST"`
+- ESM/Next errors: ensure `track-my-impact/package.json` has `"type": "module"`.
+- Next.js Turbopack export error (BaseNextRequest):
+  - Dev uses webpack now (we removed `--turbopack` from `npm run dev`).
+  - If you still see this error, clear caches and reinstall:
+    - `rm -rf track-my-impact/node_modules track-my-impact/.next`
+    - `(cd track-my-impact && npm install)`
+  - Optionally pin Next to a stable minor (e.g., set `"next": "15.3.2"` in `track-my-impact/package.json`) and reinstall.
+- ModuleNotFoundError (e.g. `pydantic_settings`): activate the backend venv and install deps
+  - `cd backend && source venv/bin/activate`
+  - `python -m pip install -r requirements.txt`
+  - Ensure VS Code is using the venv interpreter (Command Palette → Python: Select Interpreter → choose `backend/venv`).
+- Enable optional backend AI inference:
+  - Install extras in backend venv: `pip install tensorflow pillow numpy`
+  - Place/point a model and set env: `export AI_KERAS_MODEL_PATH=/full/path/to/waste_model.keras`
+  - The endpoint is `POST /api/ai/classify` (multipart `file` field). Frontend continues using TFJS unless you change it to call this API.
+
+Notes
+- Frontend data files live in `track-my-impact/public/data/*.json` and are used as a fallback if the backend is offline.
+- Core API endpoints: `/health`, `/api/auth/login`, `/api/waste/materials`, `/api/impact/calculate`, `/api/impact/summary`, `/api/impact/recent`.
+- Optionally switch to backend API endpoints once the DB-init job is in place, but current approach works with static JSON.
+
+
+Run Instructions
+rerequisites Check
+
+brew --version → verifies Homebrew. If it fails, install:
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+node -v → confirms Node ≥18.18. If missing or too old:
+brew install node (or brew upgrade node).
+
+python3 --version → ensure Python 3.11+. If not present:
+brew install python@3.11
+
+Backend (backend/)
+
+Create and activate a virtual environment (Python 3.11+ recommended).
+pip install -r requirements.txt
+Initialize the SQLite DB (seeds only the test user and an aluminium log): python init_database.py
+Start the API: uvicorn app.main:app --reload --port 8000
+Default credentials: test / test123
+
+Backend Reset & Setup (if needed - not running for the first time)
+
+From the repo root:
+cd backend
+rm -rf venv
+python3 -m venv venv
+source venv/bin/activate
+pip install --upgrade pip
+pip install -r requirements.txt
+python init_database.py
+uvicorn app.main:app --reload --port 8000
+
+Further, if the port returns as occupied: Port 8000 is already occupied. You can either stop the process currently using it or launch the API on a different port, e.g.:
+
+uvicorn app.main:app --reload --port 8001
+If you’d prefer to free 8000:
+
+lsof -i :8000         # find the PID
+kill -9 <PID>
+Then rerun uvicorn app.main:app --reload --port 8000
+
+Frontend (track-my-impact/)
+Frontend Setup
+
+In another shell:
+cd track-my-impact
+rm -rf node_modules package-lock.json
+npm install
+npm run dev
+
+Requires Node ≥18.18 (Next.js 15 won’t run on 18.17.1). Confirm with node -v.
+Install deps: npm install
+Dev server: npm run dev (served at http://localhost:3000)
+Testing & Linting
+
+Backend unit tests: pytest
+Frontend type check (works today): npx tsc --noEmit
+Lint/Jest: rerun once Node is upgraded so npm run lint and npm test stop complaining about the engine mismatch.
+
+testing prerequisites: npm install typescript
+
+
+cd /Users/zinhlemaurice-mopp/Desktop/track-my-impact-1509
+
+# 1. Remove the existing remote (usually called 'origin')
+git remote remove origin
+
+# 2. Add your new GitHub repository as the remote
+# Replace the URL below with the HTTPS or SSH URL for your new repo
+git remote add origin https://github.com/<your-account>/<new-repo>.git
+
+# 3. Stage every file and commit (if you don’t already have a clean commit)
+git add .
+git commit -m "Initial commit in new repository"
+
+# 4. Push the commit to the new repository
+# --set-upstream makes future 'git push'/'git pull' default to this branch
+git push --set-upstream origin main

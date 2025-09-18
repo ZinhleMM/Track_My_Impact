@@ -1,0 +1,33 @@
+services:
+  - type: web
+    name: track-my-impact-backend
+    env: python
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    autoDeploy: true
+    envVars:
+      - key: ENVIRONMENT
+        value: production
+      - key: DEBUG
+        value: "false"
+      - key: USE_SQLITE
+        value: "true"
+      - key: SQLITE_URL
+        value: "sqlite:////var/data/sql_app.db"
+      - key: SECRET_KEY
+        generateValue: true
+      - key: ALLOWED_ORIGINS
+        value: '["https://track-my-impact.com","http://localhost:3000"]'
+    disks:
+      - name: data
+        mountPath: /var/data
+        sizeGB: 1
+
+  - type: cron
+    name: seed-database
+    env: python
+    rootDir: backend
+    schedule: "0 0 * * 0"
+    buildCommand: pip install -r requirements.txt
+    command: python init_database.py

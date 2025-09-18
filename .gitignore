@@ -1,0 +1,16 @@
+# Node/Next build outputs
+track-my-impact/.next/
+track-my-impact/out/
+
+# Dependencies
+track-my-impact/node_modules/
+
+# Python venvs
+backend/venv/
+
+# Local dev DB
+backend/sql_app.db
+
+# macOS
+.DS_Store
+._*

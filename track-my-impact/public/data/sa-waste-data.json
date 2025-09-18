@@ -1,0 +1,67 @@
+{
+  "southAfricanWasteComposition": [
+    {
+      "category": "organic",
+      "percentage": 35.2,
+      "totalKg": 8760000,
+      "recyclablePercentage": 100,
+      "currentRecyclingRate": 8.5,
+      "potentialRecyclingRate": 85,
+      "description": "Food waste, garden waste, and other biodegradable materials"
+    },
+    {
+      "category": "paper",
+      "percentage": 18.7,
+      "totalKg": 4658000,
+      "recyclablePercentage": 85,
+      "currentRecyclingRate": 65.2,
+      "potentialRecyclingRate": 80,
+      "description": "Newspapers, cardboard, office paper, and packaging"
+    },
+    {
+      "category": "plastic",
+      "percentage": 14.3,
+      "totalKg": 3563000,
+      "recyclablePercentage": 70,
+      "currentRecyclingRate": 21.8,
+      "potentialRecyclingRate": 65,
+      "description": "Bottles, containers, bags, and packaging materials"
+    },
+    {
+      "category": "glass",
+      "percentage": 8.9,
+      "totalKg": 2218000,
+      "recyclablePercentage": 95,
+      "currentRecyclingRate": 41.3,
+      "potentialRecyclingRate": 90,
+      "description": "Bottles, jars, and other glass containers"
+    },
+    {
+      "category": "metal",
+      "percentage": 6.4,
+      "totalKg": 1593000,
+      "recyclablePercentage": 90,
+      "currentRecyclingRate": 73.5,
+      "potentialRecyclingRate": 85,
+      "description": "Aluminum and steel cans, containers, and scrap"
+    },
+    {
+      "category": "textiles",
+      "percentage": 4.8,
+      "totalKg": 1196000,
+      "recyclablePercentage": 80,
+      "currentRecyclingRate": 14.2,
+      "potentialRecyclingRate": 60,
+      "description": "Clothing, shoes, and other textile materials"
+    },
+    {
+      "category": "other",
+      "percentage": 11.7,
+      "totalKg": 2915000,
+      "recyclablePercentage": 25,
+      "currentRecyclingRate": 5.8,
+      "potentialRecyclingRate": 20,
+      "description": "Electronics, hazardous waste, and other materials"
+    }
+  ]
+}

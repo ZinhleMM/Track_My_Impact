@@ -1,0 +1,38 @@
+[
+  {
+    "equivalency_id": "cars_off_road",
+    "factor_name": "Cars off road for one day",
+    "factor_description": "CO2e equivalent to removing a car from the road for one day",
+    "conversion_rate": 4.6,
+    "unit_from": "kg_co2e",
+    "unit_to": "car_days",
+    "category": "transportation",
+    "source": "EPA",
+    "applicable_region": "South Africa",
+    "last_updated": "2023-11-01"
+  },
+  {
+    "equivalency_id": "homes_powered",
+    "factor_name": "Homes powered for one hour",
+    "factor_description": "Energy equivalent to powering a home for one hour",
+    "conversion_rate": 0.87,
+    "unit_from": "kwh",
+    "unit_to": "home_hours",
+    "category": "energy",
+    "source": "EPA",
+    "applicable_region": "South Africa",
+    "last_updated": "2023-11-01"
+  },
+  {
+    "equivalency_id": "trees_planted",
+    "factor_name": "Trees planted and grown for 10 years",
+    "factor_description": "CO2e equivalent to planting and growing trees",
+    "conversion_rate": 21.8,
+    "unit_from": "kg_co2e",
+    "unit_to": "trees",
+    "category": "forestry",
+    "source": "EPA",
+    "applicable_region": "South Africa",
+    "last_updated": "2023-11-01"
+  }
+]
