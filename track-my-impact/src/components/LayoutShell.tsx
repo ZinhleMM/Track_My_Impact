@@ -1,3 +1,14 @@
+/*
+CM3070 Computer Science Final Project Track My Impact: Data Driven Waste Management
+BSc Computer Science, Goldsmiths, University of London
+CM3070 Final Project in Data Science (CM3050)
+with Extended Features in Machine Learning and Neural Networks (CM3015) and Databases and Advanced Data Techniques (CM3010)
+by
+Zinhle Maurice-Mopp (210125870)
+zm140@student.london.ac.uk
+
+LayoutShell.tsx: Consistent navigation frame for secondary pages and tools.
+*/
 "use client";
 
 import Link from "next/link";
@@ -11,6 +22,9 @@ const primaryNav = [
   { href: "/about", label: "About" },
 ];
 
+/**
+ * Shared layout with sticky navigation used by secondary routes.
+ */
 export default function LayoutShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
 

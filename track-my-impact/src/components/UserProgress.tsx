@@ -1,3 +1,14 @@
+/*
+CM3070 Computer Science Final Project Track My Impact: Data Driven Waste Management
+BSc Computer Science, Goldsmiths, University of London
+CM3070 Final Project in Data Science (CM3050)
+with Extended Features in Machine Learning and Neural Networks (CM3015) and Databases and Advanced Data Techniques (CM3010)
+by
+Zinhle Maurice-Mopp (210125870)
+zm140@student.london.ac.uk
+
+UserProgress.tsx: Historical feed and streak tracking for individual waste logs.
+*/
 "use client";
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -55,6 +66,9 @@ interface UserProgressProps {
   }>;
 }
 
+/**
+ * Displays historic logs and summary stats for the logged-in user.
+ */
 export default function UserProgress({ userStats, logs = [] }: UserProgressProps) {
   const achievements = [
     {
@@ -259,6 +273,7 @@ export default function UserProgress({ userStats, logs = [] }: UserProgressProps
             <p className="text-sm text-gray-600">No entries yet. Log an item to see it here.</p>
           ) : (
             <div className="space-y-2">
+              {/* Show the ten most recent entries so users can spot patterns without leaving the page. */}
               {logs.slice(-10).reverse().map((log) => {
                 const dateValue = log.timestamp || log.created_at || log.date;
                 const d = dateValue ? new Date(dateValue) : undefined;

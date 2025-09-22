@@ -1,3 +1,14 @@
+/*
+CM3070 Computer Science Final Project Track My Impact: Data Driven Waste Management
+BSc Computer Science, Goldsmiths, University of London
+CM3070 Final Project in Data Science (CM3050)
+with Extended Features in Machine Learning and Neural Networks (CM3015) and Databases and Advanced Data Techniques (CM3010)
+by
+Zinhle Maurice-Mopp (210125870)
+zm140@student.london.ac.uk
+
+WasteLogger.tsx: Manual data entry form feeding the same impact pipeline as automated classifications.
+*/
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
@@ -22,6 +33,9 @@ interface WasteLoggerProps {
   storageKey: string | null;
 }
 
+/**
+ * Manual logging form that mirrors the AI classifier output structure.
+ */
 export default function WasteLogger({ onItemLogged, storageKey }: WasteLoggerProps) {
   const [material, setMaterial] = useState("");
   const [weight, setWeight] = useState("");
@@ -199,6 +213,7 @@ export default function WasteLogger({ onItemLogged, storageKey }: WasteLoggerPro
         energySavings,
       };
 
+      // Persist the manual log locally so the dashboard stays in sync offline.
       const logs = JSON.parse(localStorage.getItem(storageKey) || '[]');
       logs.push(logEntry);
       localStorage.setItem(storageKey, JSON.stringify(logs));
@@ -281,6 +296,7 @@ export default function WasteLogger({ onItemLogged, storageKey }: WasteLoggerPro
             </Select>
           </div>
 
+          {/* Preview live calculations so users know the impact before submitting. */}
           {(Number(weight) > 0 && method) && (
             <Card className={previewCardClasses}>
               <CardContent className="p-4">

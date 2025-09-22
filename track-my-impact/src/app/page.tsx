@@ -1,3 +1,14 @@
+/*
+CM3070 Computer Science Final Project Track My Impact: Data Driven Waste Management
+BSc Computer Science, Goldsmiths, University of London
+CM3070 Final Project in Data Science (CM3050)
+with Extended Features in Machine Learning and Neural Networks (CM3015) and Databases and Advanced Data Techniques (CM3010)
+by
+Zinhle Maurice-Mopp (210125870)
+zm140@student.london.ac.uk
+
+page.tsx: Core dashboard orchestrating authentication, logging, analytics, and guidance flows.
+*/
 "use client";
 
 import { useCallback, useEffect, useMemo, useState, type ChangeEvent, type FormEvent } from "react";
@@ -71,6 +82,9 @@ type LogEntry = {
   };
 };
 
+/**
+ * Main dashboard experience combining authentication, logging, and analytics.
+ */
 export default function TrackMyImpact() {
   const { user, loading: authLoading, error: authError, login, register, logout } = useAuth();
 

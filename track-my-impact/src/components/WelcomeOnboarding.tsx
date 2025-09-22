@@ -1,3 +1,14 @@
+/*
+CM3070 Computer Science Final Project Track My Impact: Data Driven Waste Management
+BSc Computer Science, Goldsmiths, University of London
+CM3070 Final Project in Data Science (CM3050)
+with Extended Features in Machine Learning and Neural Networks (CM3015) and Databases and Advanced Data Techniques (CM3010)
+by
+Zinhle Maurice-Mopp (210125870)
+zm140@student.london.ac.uk
+
+WelcomeOnboarding.tsx: Introductory carousel guiding first-time users through the product pillars.
+*/
 "use client";
 
 import { useState } from "react";
@@ -48,6 +59,9 @@ const steps = [
   },
 ];
 
+/**
+ * Lightweight onboarding carousel shown on a user's first visit.
+ */
 export default function WelcomeOnboarding({ onComplete }: WelcomeOnboardingProps) {
   const [currentStep, setCurrentStep] = useState(0);
   const percentage = ((currentStep + 1) / steps.length) * 100;

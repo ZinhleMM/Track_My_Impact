@@ -1,3 +1,14 @@
+/*
+CM3070 Computer Science Final Project Track My Impact: Data Driven Waste Management
+BSc Computer Science, Goldsmiths, University of London
+CM3070 Final Project in Data Science (CM3050)
+with Extended Features in Machine Learning and Neural Networks (CM3015) and Databases and Advanced Data Techniques (CM3010)
+by
+Zinhle Maurice-Mopp (210125870)
+zm140@student.london.ac.uk
+
+MainDashboard.tsx: Primary landing view summarising savings, levels, and navigation shortcuts.
+*/
 "use client";
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -30,6 +41,9 @@ interface MainDashboardProps {
   setActiveTab: (tab: string) => void;
 }
 
+/**
+ * Summarises the latest impact metrics and routes users to deeper features.
+ */
 export default function MainDashboard({ userStats, setActiveTab }: MainDashboardProps) {
   return (
     <div className="space-y-6">
@@ -122,6 +136,7 @@ export default function MainDashboard({ userStats, setActiveTab }: MainDashboard
               <span>Progress to next level</span>
               <span>{Math.min((userStats.co2Saved / 50) * 100, 100).toFixed(0)}%</span>
             </div>
+            {/* Gauge progress using the current CO₂ savings against the next milestone threshold. */}
             <Progress value={Math.min((userStats.co2Saved / 50) * 100, 100)} className="h-2" />
           </div>
         </CardContent>

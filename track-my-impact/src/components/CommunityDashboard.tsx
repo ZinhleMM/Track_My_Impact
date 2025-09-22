@@ -1,3 +1,14 @@
+/*
+CM3070 Computer Science Final Project Track My Impact: Data Driven Waste Management
+BSc Computer Science, Goldsmiths, University of London
+CM3070 Final Project in Data Science (CM3050)
+with Extended Features in Machine Learning and Neural Networks (CM3015) and Databases and Advanced Data Techniques (CM3010)
+by
+Zinhle Maurice-Mopp (210125870)
+zm140@student.london.ac.uk
+
+CommunityDashboard.tsx: Community benchmarking panel showing aggregate savings and the live leaderboard.
+*/
 "use client";
 
 import { useEffect, useState } from "react";
@@ -15,6 +26,9 @@ interface CommunityDashboardProps {
   refreshSignal?: number;
 }
 
+/**
+ * Pulls community-wide stats and a leaderboard from the backend for quick benchmarking.
+ */
 export default function CommunityDashboard({ refreshSignal = 0 }: CommunityDashboardProps) {
   const [stats, setStats] = useState<CommunityStats | null>(null);
   const [leaderboard, setLeaderboard] = useState<LeaderboardPayload["entries"]>([]);
@@ -22,6 +36,7 @@ export default function CommunityDashboard({ refreshSignal = 0 }: CommunityDashb
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
+  // Fetch both the aggregate metrics and leaderboard in one network round-trip.
   const loadCommunityData = async () => {
     try {
       setIsLoading(true);
@@ -41,10 +56,12 @@ export default function CommunityDashboard({ refreshSignal = 0 }: CommunityDashb
     }
   };
 
+  // Initial hydration when the dashboard first renders client-side.
   useEffect(() => {
     loadCommunityData();
   }, []);
 
+  // Allow parent components to trigger refreshes after a successful log.
   useEffect(() => {
     if (refreshSignal > 0) {
       loadCommunityData();

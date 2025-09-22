@@ -1,4 +1,14 @@
-// Simple API client for backend integration
+/*
+CM3070 Computer Science Final Project Track My Impact: Data Driven Waste Management
+BSc Computer Science, Goldsmiths, University of London
+CM3070 Final Project in Data Science (CM3050)
+with Extended Features in Machine Learning and Neural Networks (CM3015) and Databases and Advanced Data Techniques (CM3010)
+by
+Zinhle Maurice-Mopp (210125870)
+zm140@student.london.ac.uk
+
+api.ts: Type-safe client for interacting with the FastAPI backend and persisting auth tokens.
+*/
 
 import type { RegisterPayload } from "@/types/auth";
 import type { UserProfile } from "@/types/user";

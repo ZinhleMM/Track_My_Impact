@@ -1,6 +1,17 @@
+/*
+CM3070 Computer Science Final Project Track My Impact: Data Driven Waste Management
+BSc Computer Science, Goldsmiths, University of London
+CM3070 Final Project in Data Science (CM3050)
+with Extended Features in Machine Learning and Neural Networks (CM3015) and Databases and Advanced Data Techniques (CM3010)
+by
+Zinhle Maurice-Mopp (210125870)
+zm140@student.london.ac.uk
+
+layout.tsx: Next.js root layout wiring fonts, runtime scripts, and the auth wrapper.
+*/
+import "./globals.css";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
 import ClientBody from "./ClientBody";
 import Script from "next/script";
 
@@ -25,15 +36,22 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
+    <html lang="en" className={`${geistSans.variable} ${geistMono.variable} bg-background text-foreground`}>
       <head>
         <Script
           crossOrigin="anonymous"
           src="//unpkg.com/same-runtime/dist/index.global.js"
         />
       </head>
-      <body suppressHydrationWarning className="antialiased">
-        <ClientBody>{children}</ClientBody>
+      <body suppressHydrationWarning className="antialiased min-h-screen flex flex-col bg-background text-foreground">
+        {/* Main Content */}
+        <main className="flex-1 container mx-auto px-4 py-8 w-full">
+          <ClientBody>{children}</ClientBody>
+        </main>
+        {/* Footer */}
+        <footer className="w-full bg-border text-xs text-center py-4 mt-8 border-t border-border">
+          &copy; {new Date().getFullYear()} Track My Impact. All rights reserved.
+        </footer>
       </body>
     </html>
   );

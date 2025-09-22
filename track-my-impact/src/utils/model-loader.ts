@@ -1,3 +1,14 @@
+/*
+CM3070 Computer Science Final Project Track My Impact: Data Driven Waste Management
+BSc Computer Science, Goldsmiths, University of London
+CM3070 Final Project in Data Science (CM3050)
+with Extended Features in Machine Learning and Neural Networks (CM3015) and Databases and Advanced Data Techniques (CM3010)
+by
+Zinhle Maurice-Mopp (210125870)
+zm140@student.london.ac.uk
+
+model-loader.ts: TensorFlow.js utilities for loading, warming, and querying the waste classifier.
+*/
 import * as tf from '@tensorflow/tfjs';
 
 // Model configuration based on training script
@@ -6,12 +17,12 @@ const envInputSize = Number(process.env.NEXT_PUBLIC_TMI_TFJS_INPUT || '224');
 const envNorm = (process.env.NEXT_PUBLIC_TMI_TFJS_NORM || '0_1') as '0_1' | '-1_1';
 
 export const MODEL_CONFIG = {
-  INPUT_SIZE: Number.isFinite(envInputSize) && envInputSize > 0 ? envInputSize : 224,
-  NUM_CLASSES: 31,
   MODEL_URL: '/model/model.json',
   LABELS_URL: '/labels.json',
-  NORMALIZATION: envNorm, // '0_1' for [0,1] or '-1_1' for [-1,1]
-};
+  INPUT_SIZE: 224,
+  NUM_CLASSES: 30, // Updated to match actual model output and labels
+  NORMALIZATION: '0_1' as '0_1' | '-1_1' | 'imagenet',
+} as const;
 
 // Waste classification labels (matches training script output)
 export interface ClassificationResult {
@@ -39,10 +50,7 @@ export async function loadLabels(): Promise<string[]> {
       throw new Error(`Failed to load labels: ${response.statusText}`);
     }
     const data = await response.json();
-    // Support multiple formats for convenience:
-    // 1) ["class_a", "class_b", ...] (index order)
-    // 2) [{ index: 0, name: "class_a" }, { index: 1, name: "class_b" }]
-    // 3) { "0": "class_a", "1": "class_b" }
+
     if (Array.isArray(data)) {
       if (data.length && typeof data[0] === 'string') {
         labels = data as string[];
@@ -74,12 +82,11 @@ export async function loadLabels(): Promise<string[]> {
     }
 
     console.log(`✓ Loaded ${labels.length} waste classification labels`);
-    // Align expected classes to labels by default to avoid mismatches
+    // Check if class count matches labels
     if (labels.length && MODEL_CONFIG.NUM_CLASSES !== labels.length) {
       console.warn(
-        `NUM_CLASSES (${MODEL_CONFIG.NUM_CLASSES}) != labels length (${labels.length}). Using labels length.`
+        `NUM_CLASSES (${MODEL_CONFIG.NUM_CLASSES}) != labels length (${labels.length}). Model expects ${MODEL_CONFIG.NUM_CLASSES} classes.`
       );
-      MODEL_CONFIG.NUM_CLASSES = labels.length;
     }
     return labels;
   } catch (error) {

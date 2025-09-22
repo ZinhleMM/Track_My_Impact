@@ -1,3 +1,14 @@
+/*
+CM3070 Computer Science Final Project Track My Impact: Data Driven Waste Management
+BSc Computer Science, Goldsmiths, University of London
+CM3070 Final Project in Data Science (CM3050)
+with Extended Features in Machine Learning and Neural Networks (CM3015) and Databases and Advanced Data Techniques (CM3010)
+by
+Zinhle Maurice-Mopp (210125870)
+zm140@student.london.ac.uk
+
+AIClassification.tsx: Hybrid inference workflow combining TFJS and API-backed impact logging.
+*/
 "use client";
 
 import { useEffect, useRef, useState } from "react";
@@ -34,6 +45,9 @@ import {
   type ClassificationResult
 } from "@/utils/model-loader";
 
+/**
+ * Hybrid AI classifier that prefers the backend but can fall back to the TFJS model.
+ */
 interface AIClassificationProps {
   onItemLogged: () => void;
   storageKey: string | null;
@@ -84,6 +98,7 @@ export default function AIClassification({ onItemLogged, storageKey }: AIClassif
   const [modelReady, setModelReady] = useState(false);
   const [modelStatusMessage, setModelStatusMessage] = useState("Checking model availability...");
 
+  // Prepare the on-device classification stack so predictions stay responsive offline.
   useEffect(() => {
     let cancelled = false;
 
@@ -112,6 +127,7 @@ export default function AIClassification({ onItemLogged, storageKey }: AIClassif
 
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
+  // When a new prediction arrives, reset manual selections so the form reflects fresh data.
   useEffect(() => {
     if (!classification) {
       setSelectedMethod("");
@@ -162,6 +178,7 @@ export default function AIClassification({ onItemLogged, storageKey }: AIClassif
     }
   };
 
+  // Route the uploaded image through the local model (or fallback) and prepare default weights.
   const handleClassify = async () => {
     if (!selectedFile) return;
 
@@ -229,6 +246,7 @@ export default function AIClassification({ onItemLogged, storageKey }: AIClassif
     }
   };
 
+  // Persist the classification to the backend API and update local storage for offline dashboards.
   const handleLogImpact = async () => {
     if (!classification) {
       setErrorMessage("Classify an item before logging the impact.");

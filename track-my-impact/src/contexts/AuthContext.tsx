@@ -1,3 +1,14 @@
+/*
+CM3070 Computer Science Final Project Track My Impact: Data Driven Waste Management
+BSc Computer Science, Goldsmiths, University of London
+CM3070 Final Project in Data Science (CM3050)
+with Extended Features in Machine Learning and Neural Networks (CM3015) and Databases and Advanced Data Techniques (CM3010)
+by
+Zinhle Maurice-Mopp (210125870)
+zm140@student.london.ac.uk
+
+AuthContext.tsx: Global authentication provider synchronising tokens, profiles, and refresh logic.
+*/
 "use client";
 
 import { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react";
@@ -24,6 +35,9 @@ interface AuthContextValue {
   refresh: () => Promise<void>;
 }
 
+/**
+ * Centralised auth provider that keeps API token and user profile in sync.
+ */
 const AuthContext = createContext<AuthContextValue | undefined>(undefined);
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {

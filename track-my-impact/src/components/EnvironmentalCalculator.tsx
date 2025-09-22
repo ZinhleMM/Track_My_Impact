@@ -1,3 +1,14 @@
+/*
+CM3070 Computer Science Final Project Track My Impact: Data Driven Waste Management
+BSc Computer Science, Goldsmiths, University of London
+CM3070 Final Project in Data Science (CM3050)
+with Extended Features in Machine Learning and Neural Networks (CM3015) and Databases and Advanced Data Techniques (CM3010)
+by
+Zinhle Maurice-Mopp (210125870)
+zm140@student.london.ac.uk
+
+EnvironmentalCalculator.tsx: Offline-first calculator mirroring backend WARM factor computations.
+*/
 "use client";
 
 import { useState, useMemo } from "react";
@@ -21,7 +32,7 @@ import {
 } from "lucide-react";
 import { useTrackMyImpactData } from "@/hooks/useTrackMyImpactData";
 
-// Equivalency mapping helper: translate generic conversion records into UI values
+// Helper that translates raw equivalency records into UX-friendly stats displayed below
 function computeEquivalenciesFromFactors(
   equivalencyFactors: any[],
   co2Kg: number,
@@ -57,6 +68,12 @@ function computeEquivalenciesFromFactors(
   return { carDays, homeHours, trees };
 }
 
+/**
+ * Calculator that mirrors the backend impact endpoint but works offline with JSON data.
+ */
+/**
+ * Calculator that mirrors the backend impact endpoint but works offline with JSON data.
+ */
 export default function EnvironmentalCalculator() {
   const [material, setMaterial] = useState("");
   const [weight, setWeight] = useState("");
@@ -88,6 +105,7 @@ export default function EnvironmentalCalculator() {
     { id: "landfilled", name: "Landfilled" }
   ];
 
+  // Run the lightweight client-side WARM calculation using local JSON data
   const calculateImpact = async () => {
     if (!material || !weight || !method) return;
     const weightNum = parseFloat(weight);

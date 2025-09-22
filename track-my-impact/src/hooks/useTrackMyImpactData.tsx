@@ -1,3 +1,14 @@
+/*
+CM3070 Computer Science Final Project Track My Impact: Data Driven Waste Management
+BSc Computer Science, Goldsmiths, University of London
+CM3070 Final Project in Data Science (CM3050)
+with Extended Features in Machine Learning and Neural Networks (CM3015) and Databases and Advanced Data Techniques (CM3010)
+by
+Zinhle Maurice-Mopp (210125870)
+zm140@student.london.ac.uk
+
+useTrackMyImpactData.tsx: Hook that hydrates client-side components with public JSON datasets.
+*/
 // React hook for accessing Track My Impact data via public/data JSON
 import { useState, useEffect } from 'react'
 

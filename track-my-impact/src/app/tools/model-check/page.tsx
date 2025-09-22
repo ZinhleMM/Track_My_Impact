@@ -2,8 +2,8 @@
 
 import { useEffect, useRef, useState } from "react";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import { Alert, AlertDescription } from "@/components/ui/alert";
+import LayoutShell from "@/components/LayoutShell";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { getModelStatus, isModelAvailable, classifyWaste, loadLabels } from "@/utils/model-loader";
@@ -19,6 +19,7 @@ export default function ModelCheckPage() {
   const [error, setError] = useState<string>("");
   const { domesticMaterials } = useTrackMyImpactData();
 
+  // Check that model.json can be fetched and capture initial loader state
   useEffect(() => {
     (async () => {
       try {
@@ -35,6 +36,7 @@ export default function ModelCheckPage() {
     })();
   }, []);
 
+  // Verify that loaded labels line up with domestic-materials entries
   useEffect(() => {
     if (!labels.length) return;
     const missing: string[] = [];
@@ -45,6 +47,7 @@ export default function ModelCheckPage() {
     setUnmapped(missing.slice(0, 20));
   }, [labels, domesticMaterials]);
 
+  // Allow quick sanity checks using a local image upload
   const onFile = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
@@ -64,87 +67,89 @@ export default function ModelCheckPage() {
   };
 
   return (
-    <div className="max-w-3xl mx-auto p-6 space-y-6">
-      <Card>
-        <CardHeader>
-          <CardTitle>Model Self-Check</CardTitle>
-        </CardHeader>
-        <CardContent className="space-y-3">
-          {error && (
-            <Alert>
-              <AlertDescription>{error}</AlertDescription>
-            </Alert>
-          )}
-          <div className="flex flex-wrap items-center gap-2 text-sm">
-            <Badge variant={available ? "default" : "secondary"}>
-              {available ? "Model Found" : "Model Missing"}
-            </Badge>
-            {status && (
-              <>
-                <span>Expected classes: {status.expectedClasses}</span>
-                <span>Actual labels: {status.actualClasses}</span>
-                <span>Input: {status.inputSize}x{status.inputSize}</span>
-                <span>Norm: {status.normalization}</span>
-              </>
+    <LayoutShell>
+      <div className="mx-auto w-full max-w-3xl space-y-6">
+        <Card>
+          <CardHeader>
+            <CardTitle>Model Self-Check</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-3">
+            {error && (
+              <Alert>
+                <AlertDescription>{error}</AlertDescription>
+              </Alert>
             )}
-          </div>
+            <div className="flex flex-wrap items-center gap-2 text-sm">
+              <Badge variant={available ? "default" : "secondary"}>
+                {available ? "Model Found" : "Model Missing"}
+              </Badge>
+              {status && (
+                <>
+                  <span>Expected classes: {status.expectedClasses}</span>
+                  <span>Actual labels: {status.actualClasses}</span>
+                  <span>Input: {status.inputSize}x{status.inputSize}</span>
+                  <span>Norm: {status.normalization}</span>
+                </>
+              )}
+            </div>
 
-          <div className="text-sm text-gray-700">
-            Mapping coverage: {labels.length - unmapped.length}/{labels.length} mapped
-            {unmapped.length > 0 && (
-              <div className="mt-2">
-                Unmapped sample ({unmapped.length > 20 ? "first 20" : unmapped.length} shown):
-                <div className="mt-1 grid grid-cols-1 md:grid-cols-2 gap-1">
-                  {unmapped.map((u) => (
-                    <code key={u} className="text-xs bg-gray-100 px-2 py-1 rounded">{u}</code>
+            <div className="text-sm text-gray-700">
+              Mapping coverage: {labels.length - unmapped.length}/{labels.length} mapped
+              {unmapped.length > 0 && (
+                <div className="mt-2">
+                  Unmapped sample ({unmapped.length > 20 ? "first 20" : unmapped.length} shown):
+                  <div className="mt-1 grid grid-cols-1 gap-1 md:grid-cols-2">
+                    {unmapped.map((u) => (
+                      <code key={u} className="rounded bg-gray-100 px-2 py-1 text-xs">{u}</code>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+
+            <div className="space-y-2">
+              <Input type="file" accept="image/*" onChange={onFile} />
+              <img ref={imgRef} alt="preview" className="max-h-64 rounded border" />
+            </div>
+
+            {preds.length > 0 && (
+              <div className="space-y-2">
+                <div className="font-semibold">Top predictions</div>
+                <div className="space-y-1 text-sm">
+                  {preds.map((p, i) => (
+                    <div key={i} className="flex items-center justify-between rounded bg-gray-50 p-2">
+                      <div className="truncate">
+                        <span className="font-mono">{p.className}</span>
+                        <span className="ml-2 text-gray-600">({(p.confidence * 100).toFixed(2)}%)</span>
+                      </div>
+                      <div className="text-xs text-gray-500">WARM: {p.warmCategory}</div>
+                    </div>
                   ))}
                 </div>
               </div>
             )}
-          </div>
+          </CardContent>
+        </Card>
 
-          <div className="space-y-2">
-            <Input type="file" accept="image/*" onChange={onFile} />
-            <img ref={imgRef} alt="preview" className="max-h-64 rounded border" />
-          </div>
-
-          {preds.length > 0 && (
-            <div className="space-y-2">
-              <div className="font-semibold">Top predictions</div>
-              <div className="space-y-1 text-sm">
-                {preds.map((p, i) => (
-                  <div key={i} className="flex items-center justify-between bg-gray-50 p-2 rounded">
-                    <div className="truncate">
-                      <span className="font-mono">{p.className}</span>
-                      <span className="text-gray-600 ml-2">({(p.confidence*100).toFixed(2)}%)</span>
-                    </div>
-                    <div className="text-xs text-gray-500">WARM: {p.warmCategory}</div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
-        </CardContent>
-      </Card>
-
-      <Card>
-        <CardHeader>
-          <CardTitle>How to Use Your Keras Model</CardTitle>
-        </CardHeader>
-        <CardContent className="text-sm space-y-2">
-          <div>1) Convert to TFJS:</div>
-          <pre className="bg-gray-900 text-gray-100 p-3 rounded overflow-x-auto text-xs">
+        <Card>
+          <CardHeader>
+            <CardTitle>How to Use Your Keras Model</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-2 text-sm">
+            <div>1) Convert to TFJS:</div>
+            <pre className="overflow-x-auto rounded bg-gray-900 p-3 text-xs text-gray-100">
 pip install tensorflowjs
 tensorflowjs_converter --input_format=keras waste_model.keras public/model
-          </pre>
-          <div>2) Place labels file at <code>/labels.json</code> (array of class names in training order).</div>
-          <div>3) Adjust normalization if needed via env:</div>
-          <pre className="bg-gray-900 text-gray-100 p-3 rounded overflow-x-auto text-xs">
+            </pre>
+            <div>2) Place labels file at <code>/labels.json</code> (array of class names in training order).</div>
+            <div>3) Adjust normalization if needed via env:</div>
+            <pre className="overflow-x-auto rounded bg-gray-900 p-3 text-xs text-gray-100">
 NEXT_PUBLIC_TMI_TFJS_NORM=-1_1
 NEXT_PUBLIC_TMI_TFJS_INPUT=224
-          </pre>
-        </CardContent>
-      </Card>
-    </div>
+            </pre>
+          </CardContent>
+        </Card>
+      </div>
+    </LayoutShell>
   );
 }

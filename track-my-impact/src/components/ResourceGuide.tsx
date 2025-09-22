@@ -1,17 +1,23 @@
+/*
+CM3070 Computer Science Final Project Track My Impact: Data Driven Waste Management
+BSc Computer Science, Goldsmiths, University of London
+CM3070 Final Project in Data Science (CM3050)
+with Extended Features in Machine Learning and Neural Networks (CM3015) and Databases and Advanced Data Techniques (CM3010)
+by
+Zinhle Maurice-Mopp (210125870)
+zm140@student.london.ac.uk
+
+ResourceGuide.tsx: Curated Johannesburg resource compendium supporting sustainable actions.
+*/
 "use client";
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import {
   BookOpen,
-  MapPin,
   Phone,
-  ExternalLink,
   Recycle,
-  Leaf,
-  Droplets,
   AlertTriangle,
   Info
 } from "lucide-react";
@@ -30,6 +36,7 @@ export default function ResourceGuide() {
 
       {/* Quick Access Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        {/* Recycling Centres */}
         <Card className="hover:shadow-lg transition-shadow">
           <CardHeader>
             <CardTitle className="flex items-center gap-2 text-green-800">
@@ -52,6 +59,7 @@ export default function ResourceGuide() {
           </CardContent>
         </Card>
 
+        {/* Municipal Services */}
         <Card className="hover:shadow-lg transition-shadow">
           <CardHeader>
             <CardTitle className="flex items-center gap-2 text-blue-800">
@@ -61,59 +69,40 @@ export default function ResourceGuide() {
           </CardHeader>
           <CardContent>
             <p className="text-sm text-gray-600 mb-3">
-              Contact local waste management services
+              Contact Johannesburg’s official waste management service.
             </p>
-        <strong>Johannesburg:</strong>{" "}
-        <a
-          href="https://www.pikitup.co.za"
-          target="_blank"
-          className="text-blue-600"
-        >
-          Pikitup
-        </a>
-        <ul className="ml-4 mt-1 space-y-1 text-xs text-gray-700">
-            <a
-              href="https://pikitup.co.za/contacts/"
-              target="_blank"
-              className="text-blue-600 underline"
-            >
-              Pikitup Contacts List
-            </a>
-          <li>
-            <strong>Head Office:</strong> (011) 712-5200
-          </li>
-          <li>
-            <strong>Joburg Connect (Call Centre):</strong> 086 056 2874
-          </li>
-          <li>
-            <strong>Illegal Dumping WhatsApp:</strong> 082 779 1361
-          </li>
-          <li>
-            <strong>Illegal Dumping Hotline:</strong> 080 872 3342
-          </li>
-          <li>
-            <strong>Suggestions / Compliments:</strong>{" "}
-            <a
-              href="mailto:info@pikitup.co.za"
-              className="text-blue-600 underline"
-            >
-              info@pikitup.co.za
-            </a>{" "}
-            /{" "}
-            <a
-              href="mailto:muzimkhwanazi@pikitup.co.za"
-              className="text-blue-600 underline"
-            >
-              muzimkhwanazi@pikitup.co.za
-            </a>
-          </li>
-          <li>
-            <strong>Pikitup Call Centre:</strong> 010 055 5990 / 087 357 1068
-          </li>
-        </ul>
+            <ul className="text-sm space-y-2 text-gray-700">
+              <li>
+                <strong>Provider:</strong>{" "}
+                <a href="https://www.pikitup.co.za" target="_blank" className="text-blue-600 underline">
+                  Pikitup
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://pikitup.co.za/contacts/"
+                  target="_blank"
+                  className="text-blue-600 underline"
+                >
+                  Full Pikitup Contact List
+                </a>
+              </li>
+              <li><strong>Head Office:</strong> (011) 712-5200</li>
+              <li><strong>Joburg Connect (Call Centre):</strong> 086 056 2874</li>
+              <li><strong>Illegal Dumping WhatsApp:</strong> 082 779 1361</li>
+              <li><strong>Illegal Dumping Hotline:</strong> 080 872 3342</li>
+              <li>
+                <strong>Suggestions / Compliments:</strong>{" "}
+                <a href="mailto:info@pikitup.co.za" className="text-blue-600 underline">info@pikitup.co.za</a>{" "}
+                /{" "}
+                <a href="mailto:muzimkhwanazi@pikitup.co.za" className="text-blue-600 underline">muzimkhwanazi@pikitup.co.za</a>
+              </li>
+              <li><strong>Pikitup Call Centre:</strong> 010 055 5990 / 087 357 1068</li>
+            </ul>
           </CardContent>
         </Card>
 
+        {/* Emergency Disposal */}
         <Card className="hover:shadow-lg transition-shadow">
           <CardHeader>
             <CardTitle className="flex items-center gap-2 text-red-800">
@@ -127,7 +116,7 @@ export default function ResourceGuide() {
               chemicals in your bin.
             </p>
             <p className="text-sm text-gray-700">
-              <a href="https://www.iwmsa.co.za/resources/faq-hazardous-waste" target="_blank" className="text-blue-600">
+              <a href="https://www.iwmsa.co.za/resources/faq-hazardous-waste" target="_blank" className="text-blue-600 underline">
                 IWMSA Hazardous Waste Guidance
               </a>
             </p>
@@ -135,7 +124,7 @@ export default function ResourceGuide() {
         </Card>
       </div>
 
-      {/* Educational: Waste Hierarchy & Policy */}
+      {/* Waste Hierarchy & Policy */}
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
@@ -151,8 +140,9 @@ export default function ResourceGuide() {
                 <p className="text-sm text-gray-600">
                   The waste hierarchy ranks options: <strong>Prevent</strong> waste first,
                   then <strong>Reduce</strong>, <strong>Reuse</strong>, <strong>Recycle</strong>,
-                  with <strong>Treatment</strong> and <strong>Landfill</strong> as last resorts.
-                  Source: <a href="https://www.iwmsa.co.za/resources/activities" target="_blank" className="text-blue-600">IWMSA</a>.
+                  with <strong>Treatment</strong> and <strong>Landfill</strong> as last resorts.{" "}
+                  Source:{" "}
+                  <a href="https://www.iwmsa.co.za/resources/activities" target="_blank" className="text-blue-600 underline">IWMSA</a>.
                 </p>
               </AccordionContent>
             </AccordionItem>
@@ -172,7 +162,7 @@ export default function ResourceGuide() {
               <AccordionContent>
                 <p className="text-sm text-gray-600">
                   South Africa generates about <strong>108 million tonnes</strong> of waste annually.
-                  About <strong>90%</strong> goes to landfill, with recycling rates improving but still low.
+                  About <strong>90%</strong> goes to landfill, with recycling rates improving but still low.{" "}
                   (DFFE Environmental Outlook 2024).
                 </p>
               </AccordionContent>
@@ -189,7 +179,7 @@ export default function ResourceGuide() {
             Material-Specific Disposal Guidance
           </CardTitle>
           <CardDescription>
-            Proper disposal, preparation tips, and local recycling organisations
+            Preparation, cleaning tips, and where to recycle
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -202,47 +192,25 @@ export default function ResourceGuide() {
               </AccordionTrigger>
               <AccordionContent>
                 <p className="text-sm text-gray-600 mb-2">
-                  Plastics must be sorted by code. Focus on PET (#1), HDPE (#2), and PP (#5).
+                  Rinse plastics to remove food/liquid residue. Check the resin code (usually on the bottom). 
+                  Focus on PET (#1), HDPE (#2), and PP (#5).
                 </p>
                 <ul className="text-sm space-y-1">
-                  <li><strong>PET Bottles:</strong> Widely recycled. <a href="https://petco.co.za" target="_blank" className="text-blue-600">PETCO</a>.</li>
-                  <li><strong>HDPE Containers:</strong> Recyclable (Polyco). <a href="https://polyco.co.za" target="_blank" className="text-blue-600">Polyco</a>.</li>
-                  <li><strong>PP Containers:</strong> Common in tubs/caps. <a href="https://polyco.co.za" target="_blank" className="text-blue-600">Polyco</a>.</li>
-                  <li><strong>Polystyrene (#6):</strong> Limited recycling. <a href="https://psasa.co.za" target="_blank" className="text-blue-600">PSASA</a>.</li>
-                  <li><strong>Plastic Bags:</strong> Return to retail collection points.</li>
+                  <li><strong>PET (#1):</strong> Soft drink & water bottles (widely recycled). <a href="https://petco.co.za" target="_blank" className="text-blue-600 underline">PETCO</a>.</li>
+                  <li><strong>HDPE (#2):</strong> Milk jugs, detergent bottles. <a href="https://polyco.co.za" target="_blank" className="text-blue-600 underline">Polyco</a>.</li>
+                  <li><strong>PP (#5):</strong> Yogurt tubs, straws (select facilities). <a href="https://polyco.co.za" target="_blank" className="text-blue-600 underline">Polyco</a>.</li>
+                  <li><strong>LDPE (#4):</strong> Plastic bags, film (retail take-back). </li>
+                  <li><strong>PVC (#3) & PS (#6):</strong> Limited recycling options. </li>
+                  <li><strong>Other (#7):</strong> Mixed plastics, least recyclable. </li>
                 </ul>
-              </AccordionContent>
-            </AccordionItem>
-
-            {/* Paper */}
-            <AccordionItem value="paper">
-              <AccordionTrigger>
-                Paper & Cardboard <Badge className="ml-2 bg-blue-100 text-blue-800">High Value</Badge>
-              </AccordionTrigger>
-              <AccordionContent>
-                <p className="text-sm text-gray-600 mb-2">Keep paper clean, dry, and flattened.</p>
-                <ul className="text-sm space-y-1">
-                  <li><strong>Newspapers & Magazines:</strong> Collected by <a href="https://www.prasa.co.za" target="_blank" className="text-blue-600">PRASA</a>.</li>
-                  <li><strong>Office Paper:</strong> Recyclable via corporate collection.</li>
-                  <li><strong>Cardboard:</strong> Accepted by most depots. Flatten boxes.</li>
-                  <li><strong>Coffee Cups:</strong> Often lined, check before recycling.</li>
-                </ul>
-              </AccordionContent>
-            </AccordionItem>
-
-            {/* Glass */}
-            <AccordionItem value="glass">
-              <AccordionTrigger>
-                Glass <Badge className="ml-2 bg-green-100 text-green-800">100% Recyclable</Badge>
-              </AccordionTrigger>
-              <AccordionContent>
-                <p className="text-sm text-gray-600 mb-2">All glass bottles and jars are recyclable.</p>
-                <ul className="text-sm space-y-1">
-                  <li><strong>Beverage Bottles:</strong> Returnable for cash at many outlets.</li>
-                  <li><strong>Food Jars:</strong> Clean and recycle.</li>
-                  <li><strong>Cosmetic Containers:</strong> Accepted in glass streams.</li>
-                  <li><strong>Partners:</strong> <a href="https://www.tgrc.co.za" target="_blank" className="text-blue-600">The Glass Recycling Company</a>, Consol Glass.</li>
-                </ul>
+                <p className="mt-2 text-xs text-gray-600">
+                  Source:{" "}
+                  <a href="https://postwink.co.za/know-your-plastics-differentiating-between-the-7-main-types-of-plastics/"
+                     target="_blank"
+                     className="text-blue-600 underline">
+                    Postwink – Know Your Plastics
+                  </a>
+                </p>
               </AccordionContent>
             </AccordionItem>
 
